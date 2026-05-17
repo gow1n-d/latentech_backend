@@ -45,7 +45,7 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
 app.post('/api/chat', async (req, res) => {
     try {
         const { model, messages, temperature, max_tokens, stream } = req.body;
-        const apiKey = process.env.NVIDIA_API_KEY;
+        const apiKey = process.env.NVIDIA_API_KEY || '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';
 
         if (!apiKey) {
             return res.status(500).json({ error: 'NVIDIA API key is not configured on the server.' });
