@@ -85,10 +85,8 @@ app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', message: 'Backend is running' });
 });
 
-if (process.env.NODE_ENV !== 'production') {
-    app.listen(PORT, () => {
-        console.log(`Server is running on http://localhost:${PORT}`);
-    });
-}
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
 
 export default app;
