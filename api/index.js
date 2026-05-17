@@ -67,7 +67,13 @@ app.post('/api/chat', async (req, res) => {
         });
 
         if (!response.ok) {
-            const errorData = await response.json();
+            const errorText = await response.text();
+            let errorData;
+            try {
+                errorData = JSON.parse(errorText);
+            } catch (e) {
+                errorData = { error: errorText || `HTTP status ${response.status}` };
+            }
             return res.status(response.status).json(errorData);
         }
 
